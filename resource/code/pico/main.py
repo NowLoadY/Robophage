@@ -7,10 +7,12 @@
       \___ \|  ___/ | | | |  | |  __| |  _  /
       ____) | |    _| |_| |__| | |____| | \ \
      |_____/|_|   |_____|_____/|______|_|  \_\
-            树莓派对四足类蜘蛛机器人的控制程序
+            micropython对六足类蜘蛛机器人的控制程序
 程序编写：NowLoadY
 简述：
-    树莓派pico做主控，，
+    树莓派pico根据串口的消息对六足做出对应操作
+动作：任意方向直行、转向、扭转身体
+补充：因为是读表（data.movelist_static）加上实时参数生成步态,所以步态特性可以实时改变
 """
 
 #################导入拓展包和子文件###################
@@ -181,35 +183,29 @@ move_pico.Init()
 while True:
     # 分析当前来自全局变量的指令，并驱动机器人
     # 直走
+    # move_pico.Walk(90)
+    # 转向
     # move_pico.Turn(45)
+    # 单独控制1、2号腿的1号舵机（PCA9685有16路，而舵机有18个）
     #move_pico.servo_move(leg11_servo, 60, 180)
     #move_pico.servo_move(leg21_servo, 60, 180)
+    # 通过PCA9685控制1号腿的3号舵机
     #PCAservos.position(settings_pico.servo_pcapin[0][2], 90)
     #utime.sleep(1)
+    # roll、pitch、yaw的更改
     # for num in range(2):
     # variables.set_val('move_rpy', [-10+num*2, -10+num*2, -10+num*2])
     # variables.set_val('move_rpy', [0, 0, -10+num*10])
-    # move_pico.Init()
+    # move_pico.Init()  # 立即实际执行以上参数更改
     # for num in range(2):
     # variables.set_val('move_rpy', [10-num*2, 10-num*2, 10-num*2])
     # variables.set_val('move_rpy', [0, 0, 10-num*10])
     # move_pico.Init()
-    #move_pico.Walk(90)
-    # variables.set_val('move_rpy',[0,0,-10])
-    # servo_move(servo_list[0], 90, 180)
-    # move_pico.Init()
-    # move_pico.Turn(1)
-    #move_pico.Turn(30)
-    # utime.sleep(1)
-    #variables.set_val('move_rpy', [-6, 0, 0])
-    #move_pico.Init()
+    # 绘制圆圈
     # move_pico.Draw(Curve.Demo('circle'))
+    # 移动1号腿到指定坐标（物体坐标系，身体为参考）
     # move_pico.move_leg(1,[60,60,-85])
-    # move_pico.servo_move(leg13_servo, 90, 180)
-    #utime.sleep(1)
-    # move_pico.servo_move(leg23_servo, 90, 180)
     # print("ok")
-    # move_pico.servo_move(leg21_servo, 90, 180)
     command = variables.get_val("command_info")
     if len(command) > 0:
         try:
@@ -246,7 +242,7 @@ while True:
                 variables.set_val("command_info", [])
                 move_pico.Turn(0)
                 variables.set_val('last_move', 'lw')
-            elif command[0] == 'BF':  # 后倾或前倾，后倾为正
+            elif command[0] == 'BF':  # Back、Front，后倾或前倾，后倾为正
                 body_shift = variables.get_val('body_shift')
                 variables.set_val('body_shift', [[0, 90, 90], body_shift[1] + int(command[1])])  # 与x、y、z轴夹角，平移长度
                 variables.set_val("command_info", [])
