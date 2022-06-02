@@ -1,18 +1,17 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 """
-       _____ _____ _____ _____  ______ _____
-      / ____|  __ \_   _|  __ \|  ____|  __ \
-     | (___ | |__) || | | |  | | |__  | |__) |
-      \___ \|  ___/ | | | |  | |  __| |  _  /
-      ____) | |    _| |_| |__| | |____| | \ \
-     |_____/|_|   |_____|_____/|______|_|  \_\
-            micropython对六足类蜘蛛机器人的控制程序
+██████   ██████  ██████   ██████  ██████  ██   ██  █████   ██████  ███████ 
+██   ██ ██    ██ ██   ██ ██    ██ ██   ██ ██   ██ ██   ██ ██       ██      
+██████  ██    ██ ██████  ██    ██ ██████  ███████ ███████ ██   ███ █████   
+██   ██ ██    ██ ██   ██ ██    ██ ██      ██   ██ ██   ██ ██    ██ ██      
+██   ██  ██████  ██████   ██████  ██      ██   ██ ██   ██  ██████  ███████
+            micropython对六足机器人的控制程序
 程序编写：NowLoadY
 简述：
     树莓派pico根据串口的消息对六足做出对应操作
 动作：任意方向直行、转向、扭转身体
-补充：因为是读表（data.movelist_static）加上实时参数生成步态,所以步态特性可以实时改变
+补充：因为是读表（data.move_list_static.py）加上实时参数生成步态,所以步态特性可以实时改变
 """
 
 #################导入拓展包和子文件###################
@@ -22,7 +21,7 @@ import utime
 # 板载led初始化和亮灯
 led = Pin(25, Pin.OUT)
 led.value(1)
-utime.sleep(3)  # 绝对不能删，不然以后thonny进不了pico
+utime.sleep(1)  # 绝对不能删，不然以后thonny进不了pico
 led.value(0)
 
 import settings_pico
@@ -46,9 +45,9 @@ if True:
     # 脚伸展到四周距离
     variables.set_val('leg_width', 70)
     # 抬脚高度
-    variables.set_val('foot_up', 25)
+    variables.set_val('foot_up', 20)
     # 步长
-    variables.set_val('step_length', 32)
+    variables.set_val('step_length', 30)
     # 不可改，临时变量
     variables.set_val('move_rpy', [0, 0, 0])
     variables.set_val('body_shift', [[180, 90, 90], 0])  # 与x、y、z轴夹角，平移长度
@@ -156,32 +155,32 @@ servo_list = [leg11_servo, leg21_servo]
 for servo in servo_list:
     servo.freq(settings_pico.servo_f)  # 产生50Hz的PWM波，周期20ms
 variables.set_val('servo_list', servo_list)
-PCAservos.position(settings_pico.servo_pcapin[0][1], 90)
-PCAservos.position(settings_pico.servo_pcapin[0][2], 90)
+#PCAservos.position(settings_pico.servo_pcapin[0][1], 90)
+#PCAservos.position(settings_pico.servo_pcapin[0][2], 90)
 
-PCAservos.position(settings_pico.servo_pcapin[1][1], 90)
-PCAservos.position(settings_pico.servo_pcapin[1][2], 90)
+#PCAservos.position(settings_pico.servo_pcapin[1][1], 90)
+#PCAservos.position(settings_pico.servo_pcapin[1][2], 90)
 
-PCAservos.position(settings_pico.servo_pcapin[2][0], 90)
-PCAservos.position(settings_pico.servo_pcapin[2][1], 90)
-PCAservos.position(settings_pico.servo_pcapin[2][2], 90)
+#PCAservos.position(settings_pico.servo_pcapin[2][0], 90)
+#PCAservos.position(settings_pico.servo_pcapin[2][1], 90)
+#PCAservos.position(settings_pico.servo_pcapin[2][2], 90)
 
-PCAservos.position(settings_pico.servo_pcapin[3][0], 90)
-PCAservos.position(settings_pico.servo_pcapin[3][1], 90)
-PCAservos.position(settings_pico.servo_pcapin[3][2], 90)
+#PCAservos.position(settings_pico.servo_pcapin[3][0], 90)
+#PCAservos.position(settings_pico.servo_pcapin[3][1], 90)
+#PCAservos.position(settings_pico.servo_pcapin[3][2], 90)
 
-PCAservos.position(settings_pico.servo_pcapin[4][0], 90)
-PCAservos.position(settings_pico.servo_pcapin[4][1], 90)
-PCAservos.position(settings_pico.servo_pcapin[4][2], 90)
+#PCAservos.position(settings_pico.servo_pcapin[4][0], 90)
+#PCAservos.position(settings_pico.servo_pcapin[4][1], 90)
+#PCAservos.position(settings_pico.servo_pcapin[4][2], 90)
 
-PCAservos.position(settings_pico.servo_pcapin[5][0], 90)
-PCAservos.position(settings_pico.servo_pcapin[5][1], 90)
-PCAservos.position(settings_pico.servo_pcapin[5][2], 90)
+#PCAservos.position(settings_pico.servo_pcapin[5][0], 90)
+#PCAservos.position(settings_pico.servo_pcapin[5][1], 90)
+#PCAservos.position(settings_pico.servo_pcapin[5][2], 90)
 move_pico.Init()
 
 ##########################################################################################
 while True:
-    # 分析当前来自全局变量的指令，并驱动机器人
+    # 例子
     # 直走
     # move_pico.Walk(90)
     # 转向
@@ -206,37 +205,38 @@ while True:
     # 移动1号腿到指定坐标（物体坐标系，身体为参考）
     # move_pico.move_leg(1,[60,60,-85])
     # print("ok")
+    # 分析当前来自全局变量的指令，并驱动机器人
     command = variables.get_val("command_info")
     if len(command) > 0:
         try:
-            if command[0] == 'W':
+            if command[0] == 'W':  # 朝一个方向直行
                 move_pico.Walk(int(command[1]))
                 variables.set_val('last_move', 'Walk')
-            elif command[0] == 'T':
+            elif command[0] == 'T':  # 转向
                 move_pico.Turn(int(command[1]))
                 variables.set_val('last_move', 'Turn')
-            elif command[0] == 'S':
+            elif command[0] == 'S':  # 停止
                 variables.set_val("command_info", [])
                 variables.set_val('last_move', '')
                 move_pico.Init()
-            elif command[0] == 'D':
+            elif command[0] == 'D':  # 绘制图案
                 move_pico.Draw(Curve.Demo('circle'))
                 variables.set_val('last_move', 'Draw')
                 variables.set_val("command_info", [])
-            elif command[0] == 'R':
+            elif command[0] == 'R':  # 扭转身体
                 move_rpy = variables.get_val('move_rpy')
                 variables.set_val('move_rpy', [move_rpy[0] + int(command[1]), move_rpy[1] + int(command[2]), move_rpy[2] + int(command[3])])
                 variables.set_val("command_info", [])
                 move_pico.Init()
                 variables.set_val('last_move', 'rpy')
                 print(variables.get_val('move_rpy'))
-            elif command[0] == 'H':
+            elif command[0] == 'H':  # 改变身体高度
                 height = variables.get_val('height')
                 variables.set_val('height', height + int(command[1]))
                 variables.set_val("command_info", [])
                 move_pico.Init()
                 variables.set_val('last_move', 'height')
-            elif command[0] == 'F':
+            elif command[0] == 'F':  # 改变腿宽
                 legwidth = variables.get_val('leg_width')
                 variables.set_val('leg_width', legwidth + int(command[1]))
                 variables.set_val("command_info", [])
@@ -251,6 +251,6 @@ while True:
             else:
                 variables.set_val("command_info", [])
                 pass
-        except:
+        except:  # 比较保险的写法，可能有一点多余
             variables.set_val("command_info", [])
             pass
