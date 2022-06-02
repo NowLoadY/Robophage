@@ -175,11 +175,6 @@ def unfold_foot():
         time_a = time.time()
 
 
-def open_esp32cam():
-    global esp32cam_status
-    esp32cam_status = not esp32cam_status
-
-
 def key_motion(x):
     forward = keyboard.KeyboardEvent('down', 0, 'w')
     back = keyboard.KeyboardEvent('down', 0, 's')
@@ -203,7 +198,6 @@ def key_motion(x):
     forward_shift = keyboard.KeyboardEvent('down', 0, 't')
     shrink_f = keyboard.KeyboardEvent('down', 0, '<')
     unfold_f = keyboard.KeyboardEvent('down', 0, '>')
-    esp32cam = keyboard.KeyboardEvent('down', 0, 'z')
     if x.event_type == 'down' and x.name == forward.name:
         move_straight(90)
     if x.event_type == 'down' and x.name == back.name:
@@ -248,8 +242,6 @@ def key_motion(x):
         shrink_foot()
     if x.event_type == 'down' and x.name == unfold_f.name:
         unfold_foot()
-    if x.event_type == 'down' and x.name == esp32cam.name:
-        open_esp32cam()
 
 
 def face_recognize_move():
@@ -374,25 +366,4 @@ if __name__ == "__main__":
     while True:
         time_a = time.time()
         keyboard.hook(key_motion)
-        keyboard.wait('')
-        if esp32cam_status:
-            if not esp32cam_initial:
-                thread_exit = False
-                camera_id = settings.camera_id
-                img_height = 720
-                img_width = 1080
-                print("正在打开摄像头...")
-                thread = myThread(camera_id, img_height, img_width)
-                thread.start()
-                esp32cam_initial = True
-            else:
-                thread_lock.acquire()
-                img = thread.get_frame()
-                thread_lock.release()
-                if settings.show_img_on_screen:
-                    cv2.imshow('camera', img)
-                if cv2.waitKey(1) & 0xFF == ord('q'):
-                    thread_exit = True
-                    thread.join()
-                    cv2.destroyAllWindows()
-
+        keyboard.wait(' ')
