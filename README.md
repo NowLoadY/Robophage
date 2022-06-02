@@ -1,7 +1,9 @@
 # Robophage  
-仿噬菌体的6足机器人  
+**仿噬菌体的6足机器人**  
+***
 ![图片](resource/RobophageBlender.png)  
 ## Start Building  
+> 持续优化改进...
 ### code  
 把resource/code/pico内，main.py所在的路径作为根路径，烧写在RaspberryPi Pico上，上电自动运行。  
 settings.py是设置文件，其余文件夹可以翻一下  
