@@ -7,11 +7,18 @@
 ██   ██ ██    ██ ██   ██ ██    ██ ██      ██   ██ ██   ██ ██    ██ ██      
 ██   ██  ██████  ██████   ██████  ██      ██   ██ ██   ██  ██████  ███████
             micropython对六足机器人的控制程序
-程序编写：NowLoadY
+NowLoadY路过...
 简述：
     树莓派pico根据串口的消息对六足做出对应操作
 动作：任意方向直行、转向、扭转身体
-补充：因为是读表（data.move_list_static.py）加上实时参数生成步态,所以步态特性可以实时改变
+补充：
+因为是读表（data.move_list_static.py）加上实时参数生成步态,所以步态特性可以实时改变
+舵机控制板16路，所以另外使用两个来自pico的pwm输出控制腿1和腿2的1号舵机
+腿的排号方式：
+    1 2
+  3  .  4
+    5 6
+一条腿中，舵机排号为从大腿到足尖的方向，依次1、2、3
 """
 
 #################导入拓展包和子文件###################
@@ -20,9 +27,9 @@ import utime
 
 # 板载led初始化和亮灯
 led = Pin(25, Pin.OUT)
-led.value(1)
-utime.sleep(1)  # 绝对不能删，不然以后thonny进不了pico
-led.value(0)
+led.value(1)  # 开灯时可以在thonny中点取消运行
+utime.sleep(1)  # 绝对不能删，不然以后可能thonny很难进pico
+led.value(0)  # 熄灯后代表开始正式运行主程序
 
 import settings_pico
 from data import variables
@@ -58,17 +65,17 @@ if True:
     variables.set_val("command_info", [])
     variables.set_val('last_move', '')
 #####################GPIO设置##############################
-if settings_pico.use_laser:  # 激光灯
+if settings_pico.use_laser:  # 激光灯（目前版本没有装）
     laser = Pin(settings_pico.laser_Pin, Pin.OUT)
     laser.value(1)
 #####################PWM设置##############################
-if settings_pico.use_propeller:  # 激光灯
+if settings_pico.use_propeller:  # 螺旋桨（目前版本没有装）
     LXJ = PWM(Pin(settings_pico.propeller_Pin))  # PWM_A[5]
     LXJ.freq(50)
     LXJ.duty_u16(0)
     utime.sleep(1)
     LXJ.duty_u16(65535)
-if settings_pico.use_beep:  # 蜂鸣器
+if settings_pico.use_beep:  # 蜂鸣器（目前版本没有装）
     beep = PWM(Pin(settings_pico.beep_Pin))  # PWM_A[5]
     beep.freq(440)
     beep.duty_u16(65500)
@@ -131,18 +138,19 @@ except:
 
 # 初始化计时器中断
 # tim.init(period, mode, callback)
-# period:周期(ms)
-# mode:工作模式，有Timer.ONE_SHOT(实行一次)和Timer.PERIODIC(规律性实行)二种
-# callback:定时器中断的调用函数
+# 其中,    period:周期(ms)
+#          mode:工作模式，有Timer.ONE_SHOT(实行一次)和Timer.PERIODIC(规律性实行)二种
+#          callback:定时器中断的调用函数
 
 # try:
-command_timer = Timer()  # 接收指令的计时器
+command_timer = Timer()  # 接收指令的计时器（也就是使用了定时器中断来定期获取串口信息）
 command_timer.init(period=100, mode=Timer.PERIODIC, callback=read_command)
 if settings_pico.use_imu:
-    imu_timer = Timer()  # 接收指令的计时器
+    imu_timer = Timer()  # 接收imu数据的计时器
     imu_timer.init(period=10, mode=Timer.PERIODIC, callback=read_imu)
 # except:
 # print("Timer wrong")
+
 # 初始化pca9685的控制
 i2c = I2C(0, sda=Pin(12), scl=Pin(13), freq=10000)
 PCAservos = Servos(i2c, address=0x40)
@@ -155,24 +163,28 @@ servo_list = [leg11_servo, leg21_servo]
 for servo in servo_list:
     servo.freq(settings_pico.servo_f)  # 产生50Hz的PWM波，周期20ms
 variables.set_val('servo_list', servo_list)
+# 这里就可以控制舵机了
+# 腿1
+#move_pico.servo_move(leg11_servo, 90, 180)
 #PCAservos.position(settings_pico.servo_pcapin[0][1], 90)
 #PCAservos.position(settings_pico.servo_pcapin[0][2], 90)
-
+# 腿2
+#move_pico.servo_move(leg11_servo, 90, 180)
 #PCAservos.position(settings_pico.servo_pcapin[1][1], 90)
 #PCAservos.position(settings_pico.servo_pcapin[1][2], 90)
-
+# 腿3
 #PCAservos.position(settings_pico.servo_pcapin[2][0], 90)
 #PCAservos.position(settings_pico.servo_pcapin[2][1], 90)
 #PCAservos.position(settings_pico.servo_pcapin[2][2], 90)
-
+# 腿4
 #PCAservos.position(settings_pico.servo_pcapin[3][0], 90)
 #PCAservos.position(settings_pico.servo_pcapin[3][1], 90)
 #PCAservos.position(settings_pico.servo_pcapin[3][2], 90)
-
+# 腿5
 #PCAservos.position(settings_pico.servo_pcapin[4][0], 90)
 #PCAservos.position(settings_pico.servo_pcapin[4][1], 90)
 #PCAservos.position(settings_pico.servo_pcapin[4][2], 90)
-
+# 腿6
 #PCAservos.position(settings_pico.servo_pcapin[5][0], 90)
 #PCAservos.position(settings_pico.servo_pcapin[5][1], 90)
 #PCAservos.position(settings_pico.servo_pcapin[5][2], 90)
@@ -180,18 +192,18 @@ move_pico.Init()
 
 ##########################################################################################
 while True:
-    # 例子
-    # 直走
+    # 一下给出几个例子
+    # 一、直走
     # move_pico.Walk(90)
-    # 转向
+    # 二、转向
     # move_pico.Turn(45)
-    # 单独控制1、2号腿的1号舵机（PCA9685有16路，而舵机有18个）
+    # 三、单独控制1、2号腿的1号舵机（PCA9685有16路，而舵机有18个）
     #move_pico.servo_move(leg11_servo, 60, 180)
     #move_pico.servo_move(leg21_servo, 60, 180)
-    # 通过PCA9685控制1号腿的3号舵机
+    # 四、通过PCA9685控制1号腿的3号舵机
     #PCAservos.position(settings_pico.servo_pcapin[0][2], 90)
     #utime.sleep(1)
-    # roll、pitch、yaw的更改
+    # 五、roll、pitch、yaw的更改
     # for num in range(2):
     # variables.set_val('move_rpy', [-10+num*2, -10+num*2, -10+num*2])
     # variables.set_val('move_rpy', [0, 0, -10+num*10])
@@ -200,12 +212,13 @@ while True:
     # variables.set_val('move_rpy', [10-num*2, 10-num*2, 10-num*2])
     # variables.set_val('move_rpy', [0, 0, 10-num*10])
     # move_pico.Init()
-    # 绘制圆圈
+    # 六、绘制圆圈
     # move_pico.Draw(Curve.Demo('circle'))
-    # 移动1号腿到指定坐标（物体坐标系，身体为参考）
+    # 七、移动1号腿到指定坐标（物体坐标系，身体为参考）
     # move_pico.move_leg(1,[60,60,-85])
     # print("ok")
-    # 分析当前来自全局变量的指令，并驱动机器人
+
+    # 以下为：分析当前来自全局变量的指令，并驱动机器人
     command = variables.get_val("command_info")
     if len(command) > 0:
         try:
@@ -251,6 +264,7 @@ while True:
             else:
                 variables.set_val("command_info", [])
                 pass
+            #  更多指令等友友们来开发，我就抛个砖。
         except:  # 比较保险的写法，可能有一点多余
             variables.set_val("command_info", [])
             pass
