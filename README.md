@@ -1,7 +1,7 @@
 # Robophage  
 **仿噬菌体的6足机器人**  
 ***
-![预览图片](resource/预览图2.png)![预览图片](resource/预览图1.png)    
+![预览图片](Pictures/预览图2.png)![预览图片](Pictures/预览图1.png)    
 ## Start Building  
 > 持续优化改进...  
 ***
