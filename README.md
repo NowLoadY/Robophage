@@ -19,3 +19,5 @@ settings.py是设置文件
 #### 腿部  
 使用开源项目[hexapod，这里给一个python版传送门](https://github.com/ViolinLee/PiHexa18)  
 3d模型整理后上传  
+## 效果视频  
+<iframe src="//player.bilibili.com/player.html?aid=512277545&bvid=BV1Ng41197Ls&cid=749245400&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
