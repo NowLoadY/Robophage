@@ -33,7 +33,14 @@
 |       |**[无线串口模块DL-20](https://item.taobao.com/item.htm?spm=a230r.1.14.24.12c4259eXgpoSP&id=573882263589&ns=1&abbucket=4#detail)**||
 |简介    |zigbee通信，即插即用||
 |special|点对点通信或广播通信||
-|Value  |转出工作电压||
+|Value  |电脑与单片机的通信||  
+## 实现原理  
+### 步态  
+![单腿](Pictures/单腿动.gif)  
+![六条腿](Pictures/6腿动.gif)  
+### 取水和注水  
+![物质取放](Pictures/吸水吐水.gif)
+### 视觉识别追踪  
 ## Start Building  
 > 持续优化改进...  
 ### code  
