@@ -61,7 +61,7 @@
 settings.py是设置文件  
 **main.py**中的循环前的语句有配置详情，使用杜邦线连接，根据这些代码可以知道如何接线。  
 #### Personal Computer  
-  resource/code/Controller，内含yolo，所以带了一份[yolo6.1](https://github.com/ultralytics/yolov5/releases/tag/v6.1)的requirements.txt  
+  resource/code/Controller，内含yolo，所以带了一份[yolov5 release6.1](https://github.com/ultralytics/yolov5/releases/tag/v6.1)的requirements.txt  
   运行**user.py**
 ***
 ### Parts of the machine  
