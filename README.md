@@ -41,6 +41,7 @@
 ### 取水和注水  
 ![物质取放](Pictures/吸水吐水.gif)
 ### 视觉识别追踪  
+![物质取放](Pictures/图像识别手势控制 .gif)
 ## Start Building  
 > 持续优化改进...  
 ### code  
