@@ -49,7 +49,7 @@
 #### 结构说明  
 ![模型截图](Pictures/简易水循环系统.png)
 ### 视觉识别追踪  
-#### 测试动图  
+#### 测试动图（Speed X 3）  
 ![物质取放](Pictures/图像识别手势控制.gif)  
 #### 方法  
 物体识别直接使用yolov5开源[coco数据集](https://blog.csdn.net/qq_41185868/article/details/82939959)模型，手势识别使用Google开源机器学习框架[mediapipe](https://mediapipe.dev/)的手部关键点检测。计算分析手势为伸出食指时，将食指的图像投影坐标相对图像中心点的x、y轴偏移量转化为指令发送给机器人调整姿态实现追踪。esp32cam带来了主要延迟。  
