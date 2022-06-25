@@ -4,6 +4,12 @@
 ![图片](resource/RobophageBlender.png)  
 ## Start Building  
 > 持续优化改进...  
+***
+## How to say: Imitate the phage？
+![来自国外论文的图片](Pictures/bacteriophage2.jpg)   
+如图，直观来讲，噬菌体的结构最明显的是头部，“Helical sheath”，Hexagonal baseplate，Tail fibers，当然Tail pins也是很重要的部分。  
+我们都知道噬菌体是一种病毒，最常见的即以大肠杆菌为寄主的T2噬菌体。[当噬菌体T2感染大肠杆菌时，它的尾部吸附在菌体上。然后，菌体内形成大量噬菌体，菌体裂解后，释放出几十个乃至几百个与原来感染细菌一样的噬菌体T2。](http://zhidao.baidu.com/question/370795825/answer/3064369381)  
+![网友回答的配图](https://iknow-pic.cdn.bcebos.com/c8177f3e6709c93d6c95af16913df8dcd00054ef)  
 ### code  
 #### RaspberryPi Pico  
   把resource/code/pico内，main.py所在的路径作为根路径，烧写在RaspberryPi Pico上，上电自动运行。  
