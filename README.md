@@ -12,13 +12,28 @@
 ![网友回答的配图](https://iknow-pic.cdn.bcebos.com/c8177f3e6709c93d6c95af16913df8dcd00054ef)  
 当然，这样的机器人怎么可能侵入什么东西来实现自己的复制？所以从“注入DNA”这里模仿也许比较合适。  
 ***
-## 使用的硬件和软件平台  
-|       |      Blender      |   [RaspberryPi](https://pico.org.cn/)   |        Python        |ESP32cam|
-|:-     |      :-----:      |               :---------:                |        :----:        | :----: |
-|简介    |开源免费建模动画软件|support programming in C or in micropython|     解释型编程语言     |[小尺寸摄像头模组](https://docs.ai-thinker.com/esp32-cam) |
-|special|   强大的开源社区   |                  rp2040                  |简洁性、易读性以及可扩展性|                          Wifi                          |
-| Value |   建模、制作anime   |           main computing chip           |Processing images and [监听键盘](https://blog.csdn.net/coco56/article/details/107847467) |Wireless Images Transmission|
- 
+## 使用的工具/材料
+|       |**Blender**|**Python**|
+|:----- |:-----:|:----:|
+|简介   |开源免费建模动画软件|解释型编程语言|
+|special|强大的开源社区|简洁性、易读性以及可扩展性|
+|Value  |建模、制作anime|Processing images and [监听键盘](https://blog.csdn.net/coco56/article/details/107847467) |
+|       |**[RaspberryPi](https://pico.org.cn/)**|**[ESP32cam](https://docs.ai-thinker.com/esp32-cam)**|
+|简介    |support programming in C or in micropython|小尺寸摄像头模组 |
+|special|rp2040|Wifi|
+|Value  |main computing chip|Wireless Images Transmission|
+|       |**PCA9685**|**[微型隔膜泵](https://m.tb.cn/h.fEWZDlZ?tk=fhnS2oLF5j6)**|
+|简介    |16路舵机控制板iic通信|足够迷你的5v驱动隔膜泵|
+|special|iic|5v工作|
+|Value  |control 16 servos|water operation|
+|       |**[转压模块](https://m.tb.cn/h.fvNk34G?tk=g5z52MGwKzn)**|**3s航模锂电池**|
+|简介    |in:7V~28V out:5V3A,1.5A if have worked for a long time|about 11.1v|
+|special|5V3A|11.1V|
+|Value  |转出工作电压|作为总电源|
+|       |**[无线串口模块DL-20](https://item.taobao.com/item.htm?spm=a230r.1.14.24.12c4259eXgpoSP&id=573882263589&ns=1&abbucket=4#detail)**||
+|简介    |zigbee通信，即插即用||
+|special|点对点通信或广播通信||
+|Value  |转出工作电压||
 ## Start Building  
 > 持续优化改进...  
 ### code  
@@ -36,7 +51,7 @@ settings.py是设置文件
 头部也有足够的空间（相对的比例来说），可安装高性能计算单元。  
 #### Leg  
 使用开源项目“[hexapod，这里给一个python版传送门](https://github.com/ViolinLee/PiHexa18)”的腿，正六边形插入式安装。
-关节动力目前采用舵机，up有想学无刷电机。  
+关节动力目前采用舵机。  
 #### 3d模型  
 > StlFiles  
 >> Body  
