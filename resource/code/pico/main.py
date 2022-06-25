@@ -8,6 +8,7 @@
 ██   ██  ██████  ██████   ██████  ██      ██   ██ ██   ██  ██████  ███████
             micropython对六足机器人的控制程序
 NowLoadY路过...
+邮箱：2225649558@qq.com
 简述：
     树莓派pico根据串口的消息对六足做出对应操作
 动作：任意方向直行、转向、扭转身体
@@ -264,7 +265,6 @@ while True:
             else:
                 variables.set_val("command_info", [])
                 pass
-            #  更多指令等友友们来开发，我就抛个砖。
         except:  # 比较保险的写法，可能有一点多余
             variables.set_val("command_info", [])
             pass
