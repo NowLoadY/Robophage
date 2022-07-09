@@ -16,24 +16,24 @@
 |       |**Blender**|**Python**|
 |:----- |:-----:|:----:|
 |简介   |开源免费建模动画软件|解释型编程语言|
-|special|强大的开源社区|简洁性、易读性以及可扩展性|
-|Value  |建模、制作anime|Processing images and [监听键盘](https://blog.csdn.net/coco56/article/details/107847467) |
+|特点|强大的开源社区|简洁性、易读性以及可扩展性|
+|用处  |建模、制作anime|Processing images and [监听键盘](https://blog.csdn.net/coco56/article/details/107847467) |
 |       |**[RaspberryPi Pico](https://pico.org.cn/)**|**[ESP32cam](https://docs.ai-thinker.com/esp32-cam)**|
 |简介    |support programming in C or in micropython|小尺寸摄像头模组 |
-|special|rp2040|Wifi|
-|Value  |main computing chip|Wireless Images Transmission|
+|特点|rp2040|Wifi|
+|用处  |main computing chip|Wireless Images Transmission|
 |       |**PCA9685**|**[微型隔膜泵](https://m.tb.cn/h.fEWZDlZ?tk=fhnS2oLF5j6)**|
 |简介    |16路舵机控制板iic通信|足够迷你的5v驱动隔膜泵|
-|special|iic|5v工作|
-|Value  |control 16 servos|water operation|
+|特点|iic|5v工作|
+|用处  |control 16 servos|water operation|
 |       |**[转压模块](https://m.tb.cn/h.fvNk34G?tk=g5z52MGwKzn)**|**3s航模锂电池**|
 |简介    |in:7V~28V out:5V3A,1.5A if have worked for a long time|about 11.1v|
-|special|5V3A|11.1V|
-|Value  |转出工作电压|作为总电源|
+|特点|5V3A|11.1V|
+|用处  |转出工作电压|作为总电源|
 |       |**[无线串口模块DL-20](https://item.taobao.com/item.htm?spm=a230r.1.14.24.12c4259eXgpoSP&id=573882263589&ns=1&abbucket=4#detail)**|**FDM3D打印机**|
 |简介    |zigbee通信，即插即用|[FDM（Fused deposition Modeling）是熔融沉积成型法的简称，是当前全世界应用最为广泛的3D打印技术](https://zhuanlan.zhihu.com/p/392174214)|
-|special|点对点通信或广播通信|打印步骤较光固化更简单|
-|Value  |电脑与单片机的通信|将电脑上建好的模型打印出来|  
+|特点|点对点通信或广播通信|打印步骤较光固化更简单|
+|用处  |电脑与单片机的通信|将电脑上建好的模型打印出来|  
 ***
 ## 实现原理  
 ### 步态  
