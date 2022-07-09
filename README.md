@@ -10,7 +10,7 @@
 ### 生理功能
 我们都知道噬菌体是一种病毒，最常见的即以大肠杆菌为寄主的T2噬菌体。[当噬菌体T2感染大肠杆菌时，它的尾部吸附在菌体上。然后，菌体内形成大量噬菌体，菌体裂解后，释放出几十个乃至几百个与原来感染细菌一样的噬菌体T2。](http://zhidao.baidu.com/question/370795825/answer/3064369381)  
 ![网友回答的配图](https://iknow-pic.cdn.bcebos.com/c8177f3e6709c93d6c95af16913df8dcd00054ef)  
-当然，这样的机器人怎么可能侵入什么东西来实现自己的复制？所以从“注入DNA”这里模仿也许更为合适。  
+这样的机器人怎么能侵入什么东西来实现自己的复制？所以模仿“注入DNA”更合适。  
 ***
 ## 使用的工具/材料  
 |       |**Blender**|**Python**|
@@ -59,7 +59,7 @@
 ### code  
 #### RaspberryPi Pico  
   把resource/code/pico作根路径，烧写在RaspberryPi Pico上。  
-**main.py**中有配置详情  
+**main.py**有配置详情  
 #### Personal Computer  
   resource/code/Controller
   运行**user.py**
