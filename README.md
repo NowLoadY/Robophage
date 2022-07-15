@@ -6,13 +6,13 @@
 ## How to say: Imitate the phage？  
 ### 大致外形  
 ![来自国外论文的图片](Pictures/bacteriophage2.jpg)   
-如图，直观来讲，噬菌体的结构最明显的是头部，“Helical sheath”，Hexagonal baseplate，Tail fibers，当然Tail pins也是很重要的部分。  
+如图，噬菌体的结构最明显的是头部，“Helical sheath”，Hexagonal baseplate，Tail fibers...Tail pins也是很重要的部分。  
 ### 生理功能
 我们都知道噬菌体是一种病毒，最常见的即以大肠杆菌为寄主的T2噬菌体。[当噬菌体T2感染大肠杆菌时，它的尾部吸附在菌体上。然后，菌体内形成大量噬菌体，菌体裂解后，释放出几十个乃至几百个与原来感染细菌一样的噬菌体T2。](http://zhidao.baidu.com/question/370795825/answer/3064369381)  
 ![网友回答的配图](https://iknow-pic.cdn.bcebos.com/c8177f3e6709c93d6c95af16913df8dcd00054ef)  
 这样的机器人怎么能侵入什么东西来实现自己的复制？所以模仿“注入DNA”更合适。  
 ***
-## 使用的工具/材料  
+## 使用的Tools/Materials  
 |       |**Blender**|**Python**|
 |:----- |:-----:|:----:|
 |简介   |开源免费建模动画软件|解释型编程语言|
@@ -43,7 +43,8 @@
 3角步态动画  
 ![六条腿](Pictures/6腿动.gif)  
 #### 步态说明  
-> 待编辑  
+纯纯三角步态  
+![步态参考图](https://s2.51cto.com/images/blog/202109/27/7ff3b4724457d457d1847e6c0859d8e2.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_30,g_se,x_10,y_10,shadow_20,type_ZmFuZ3poZW5naGVpdGk=)
 ### 水操作  
 #### 取水注水  
 ![物质取放](Pictures/吸水吐水.gif)  
@@ -55,8 +56,8 @@
 #### 方法  
 物体识别直接使用yolov5训练的开源[coco数据集](https://blog.csdn.net/qq_41185868/article/details/82939959)模型，手势识别使用Google开源机器学习框架[mediapipe](https://mediapipe.dev/)的手部关键点检测。计算分析手势为伸出食指时，将食指的图像投影坐标相对图像中心点的x、y轴偏移量转化为指令发送给机器人调整姿态实现追踪。esp32cam带来了主要延迟。  
 ***
-## Start Building  
-### code  
+## Start Your Building  
+### Code  
 #### RaspberryPi Pico  
   把resource/code/pico作根路径，烧写在RaspberryPi Pico上。  
 **main.py**有配置详情  
@@ -76,5 +77,5 @@
 >> smallparts  
 ***
 ## 效果视频  
-目前有如下的效果：  
+现有如下效果：  
 [B站NowLoadY 仿噬菌体的6足机器人](https://www.bilibili.com/video/BV1Ng41197Ls?share_source=copy_web)  
