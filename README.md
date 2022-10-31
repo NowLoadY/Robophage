@@ -1,5 +1,5 @@
 # Robophage  
-**仿噬菌体的6足机器人**  
+**似噬菌体的6足机器人**  
 ***
 
 <div align="center">
