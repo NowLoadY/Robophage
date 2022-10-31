@@ -6,16 +6,6 @@
   <img src="https://github.com/NowLoadY/Robophage/blob/main/Pictures/%E9%A2%84%E8%A7%88%E5%9B%BE2.png" width="40%" height="40%"/><img src="https://github.com/NowLoadY/Robophage/blob/main/Pictures/%E9%A2%84%E8%A7%88%E5%9B%BE1.png" width="40%" height="40%"/>
 </div>  
 
-***
-## 哪里体现仿噬菌体  
-### 外形  
-![来自国外论文的图片](Pictures/bacteriophage2.jpg)   
-如图，噬菌体的结构最明显的是头部，“Helical sheath”，Hexagonal baseplate，Tail fibers...Tail pins也是很重要的部分。  
-### 功能  
-噬菌体是一种病毒，以大肠杆菌为寄主的T2噬菌体最常见。[当噬菌体T2感染大肠杆菌时，它的尾部吸附在菌体上。然后，菌体内形成大量噬菌体，菌体裂解后，释放出几十个乃至几百个与原来感染细菌一样的噬菌体T2。](http://zhidao.baidu.com/question/370795825/answer/3064369381)  
-![网友回答的配图](https://iknow-pic.cdn.bcebos.com/c8177f3e6709c93d6c95af16913df8dcd00054ef)  
-这样的机器人怎么实现自我复制？模仿“注入DNA”更合适吧。  
-***
 ## 使用的工具/材料  
 |       |**Blender**|**Python**|
 |:----- |:-----:|:----:|
@@ -61,7 +51,7 @@
 #### 测试演示（Speed X 3）  
 ![物质取放](Pictures/图像识别手势控制.gif)  
 #### 方法  
-从esp32cam获取无线传输的图像，使用预训练的[coco数据集](https://blog.csdn.net/qq_41185868/article/details/82939959)在yolov5上去推理，手势识别使用Google开源机器学习框架[mediapipe](https://mediapipe.dev/)的手部关键点检测。计算分析手势为伸出食指时，将食指的图像投影坐标相对图像中心点的x、y轴偏移量转化为指令发送给机器人调整姿态实现追踪。esp32cam和“保险的通讯频率”带来了主要延迟。  
+从esp32cam获取无线传输的图像，使用预训练的[coco数据集](https://blog.csdn.net/qq_41185868/article/details/82939959)在yolov5上去推理，手势识别使用Google开源机器学习框架[mediapipe](https://mediapipe.dev/)的手部关键点检测。计算分析手势为伸出食指时，将食指的图像投影坐标相对图像中心点的x、y轴偏移量转化为指令发送给机器人调整姿态实现追踪。
 ***
 ## Start Building  
 ### Code  
@@ -84,5 +74,5 @@
 >> smallparts  
 ***
 ## Video  
-现有如下效果：  
+现效果请看视频：  
 [B站NowLoadY 仿噬菌体的6足机器人](https://www.bilibili.com/video/BV1Ng41197Ls?share_source=copy_web)  
