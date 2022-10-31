@@ -11,7 +11,7 @@
 |:----- |:-----:|:----:|
 |简介   |开源免费建模动画软件|解释型编程语言|
 |特点|强大的开源社区|简洁性、易读性以及可扩展性|
-|用处  |建模、制作anime|Processing images and [监听键盘](https://blog.csdn.net/coco56/article/details/107847467) |
+|用处  |建模、制作动画|处理图像和[监听键盘](https://blog.csdn.net/coco56/article/details/107847467) |
 |       |**[RaspberryPi Pico](https://pico.org.cn/)**|**[ESP32cam](https://docs.ai-thinker.com/esp32-cam)**|
 |简介    |support programming in C or in micropython|小尺寸摄像头模组 |
 |特点|rp2040|Wifi|
